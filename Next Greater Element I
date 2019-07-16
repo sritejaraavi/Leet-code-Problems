@@ -1,0 +1,21 @@
+class Solution {
+public:
+    vector<int> nextGreaterElement(vector<int>& findNums, vector<int>& nums) {
+       stack<int>st;
+       vector<int>res;
+       unordered_map<int, int>myp;
+        for(int i=0;i<nums.size();i++)
+        {   
+            while(!(st.empty())&&nums[i]>st.top())
+            {  
+                myp[st.top()]=nums[i];
+                st.pop();
+            }
+            st.push(nums[i]);
+        }
+        for (int n : findNums) 
+        res.push_back(myp.count(n) ? myp[n] : -1);
+
+        return res;
+    }
+};
